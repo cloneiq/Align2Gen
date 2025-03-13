@@ -1,0 +1,49 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  META_ARCHITECTURE: "TwoStagePseudoLabGeneralizedRCNN"
+  WEIGHTS: "pretrains/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  PROPOSAL_GENERATOR:
+    NAME: "PseudoLabRPN"
+  RPN:
+    POSITIVE_FRACTION: 0.25
+    LOSS: "CrossEntropy"
+  ROI_HEADS:
+    NAME: "StandardROIHeadsPseudoLab"
+    LOSS: "FocalLoss_BoundaryVar"
+    NUM_CLASSES: 22
+  ROI_BOX_HEAD:
+    BBOX_REG_LOSS_TYPE: "nlloss"
+    CLS_AGNOSTIC_BBOX_REG: True
+SOLVER:
+  LR_SCHEDULER_NAME: "WarmupMultiStepLR"
+  STEPS: (8000,)
+  MAX_ITER: 320000
+  IMG_PER_BATCH_LABEL: 4
+  IMG_PER_BATCH_UNLABEL: 4
+  BASE_LR: 0.01
+DATALOADER:
+  SUP_PERCENT: 100.0
+  RANDOM_DATA_SEED: 0
+DATASETS:
+  CROSS_DATASET: True
+  TRAIN_LABEL: ("coco_2017_val","coco_2017_train")
+  TRAIN_UNLABEL: ("coco_2017_unlabel",)
+  TEST: ("coco_2017_val", "coco_2017_unlabel")
+SEMISUPNET:
+  Trainer: "ubteacher_rcnn"
+  BBOX_THRESHOLD: 0.89
+  TEACHER_UPDATE_ITER: 1
+  BURN_UP_STEP: 8000
+  EMA_KEEP_RATE: 0.9996
+  UNSUP_LOSS_WEIGHT: 1.0
+  UNSUP_REG_LOSS_WEIGHT: 1.0
+TEST:
+  EVAL_PERIOD: 8000
+  EVALUATOR: "COCOeval"
+  VAL_LOSS: False
+INPUT: # scale jittering (follow soft teacher)
+  MIN_SIZE_TRAIN: (400, 800)
+  MIN_SIZE_TRAIN_SAMPLING: "range"
