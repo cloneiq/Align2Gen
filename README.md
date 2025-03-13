@@ -1,4 +1,4 @@
-# Align2Gen
+# Align2Gen：A Lesion-Enhanced Dual-Branch Model for High-Quality Radiology Report Generation
  ## Overview
  
  Radiology report generation is valuable in assisting diagnosis, reducing doctors’ workload, and improving accuracy by automatically generating diagnostic reports by integrating radiological image content with clinical knowledge. However, most existing models primarily establish coarse-grained mappings between global images and texts, ignoring the fine-grained relationship between lesion regions and report content, which affects report accuracy. 
