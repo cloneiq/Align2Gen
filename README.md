@@ -18,10 +18,8 @@
  cuda 11.3
  ```
  ### Downloading necessary data
- You can access the official download page for the MIMIC-CXR dataset from the following link: https://physionet.org/content/mimic-cxr/2.0.0/
- 
  You can access the official download page for the MIMIC-CXR dataset from the following [Link](https://physionet.org/content/mimic-cxr/2.0.0/)
- You can access the official download page for the MIMIC-CXR dataset from the following [Link](https://physionet.org/content/vindr-cxr/1.0.0/)
+ You can access the official download page for the VinDr-CXR dataset from the following [Link](https://physionet.org/content/vindr-cxr/1.0.0/)
  (If you want to obtain the VinDr-CXR dataset in JPG format, you can download it from the Kaggle competition platform.)
  ### Train and Test
  ```
