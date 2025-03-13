@@ -7,7 +7,7 @@ To this end, this paper proposes Align2Gen, a radiology report generation model 
 
 - we introduce semi-supervised learning to generate bounding box annotations for the MIMIC-CXR dataset through the Unbiased-Teacher v2 framework, which reduces the reliance on manual annotations and improves the efficiency and coverage of annotations.
 - we propose the Align2Gen model to improve the accuracy and interpretability of the report generation by combining the lesion area enhancement module (LERA) and bounding box annotation to focus more on clinically important lesion areas.
--we design a global-local bi-branch implicit alignment module (LAB and GAB) to enhance feature alignment between vision and text and reduce information mismatch. 
+- we design a global-local bi-branch implicit alignment module (LAB and GAB) to enhance feature alignment between vision and text and reduce information mismatch. 
 
 ## Usage
 ### Setup
