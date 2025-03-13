@@ -1,35 +1,44 @@
-# Align2Gen
-## Overview
+# R2Gen
 
-Radiology report generation is valuable in assisting diagnosis, reducing doctors’ workload, and improving accuracy by automatically generating diagnostic reports by integrating radiological image content with clinical knowledge. However, most existing models primarily establish coarse-grained mappings between global images and texts, ignoring the fine-grained relationship between lesion regions and report content, which affects report accuracy. 
+This is the implementation of [Generating Radiology Reports via Memory-driven Transformer](https://arxiv.org/pdf/2010.16056.pdf) at EMNLP-2020.
 
-To this end, this paper proposes Align2Gen, a radiology report generation model designed for lesion perception.  
+## Citations
 
-- we introduce semi-supervised learning to generate bounding box annotations for the MIMIC-CXR dataset through the Unbiased-Teacher v2 framework, which reduces the reliance on manual annotations and improves the efficiency and coverage of annotations.
-- we propose the Align2Gen model to improve the accuracy and interpretability of the report generation by combining the lesion area enhancement module (LERA) and bounding box annotation to focus more on clinically important lesion areas.
-- we design a global-local bi-branch implicit alignment module (LAB and GAB) to enhance feature alignment between vision and text and reduce information mismatch. 
-
-## Usage
-### Setup
-#### Align2Gen Setup
+If you use or extend our work, please cite our paper at EMNLP-2020.
 ```
-python 3.8
-pytorch 1.10.0
-cuda 11.3
-```
-### Downloading necessary data
-You can access the official download page for the MIMIC-CXR dataset from the following [Link](https://physionet.org/content/mimic-cxr/2.0.0/)
-You can access the official download page for the MIMIC-CXR dataset from the following [Link](https://physionet.org/content/vindr-cxr/1.0.0/)
-(If you want to obtain the VinDr-CXR dataset in JPG format, you can download it from the Kaggle competition platform.)
-### Train and Test
-```
-cd Align2Gen
-python main.py
+@inproceedings{chen-emnlp-2020-r2gen,
+    title = "Generating Radiology Reports via Memory-driven Transformer",
+    author = "Chen, Zhihong and
+      Song, Yan  and
+      Chang, Tsung-Hui and
+      Wan, Xiang",
+    booktitle = "Proceedings of the 2020 Conference on Empirical Methods in Natural Language Processing",
+    month = nov,
+    year = "2020",
+}
 ```
 
-##  License
-The source code is free for research and education use only. Any commercial use should get formal permission first.
+## Requirements
 
-## Acknowledgement
-Thanks [unbiased-teacher-v2](https://github.com/facebookresearch/unbiased-teacher-v2) for serving as building blocks of Align2Gen.
-Thanks [R2Gen](https://github.com/zhjohnchan/R2Gen) for serving as building blocks of Align2Gen.
+- `torch==1.5.1`
+- `torchvision==0.6.1`
+- `opencv-python==4.4.0.42`
+
+
+## Download R2Gen
+You can download the models we trained for each dataset from [here](https://github.com/cuhksz-nlp/R2Gen/blob/main/data/r2gen.md).
+
+## Datasets
+We use two datasets (IU X-Ray and MIMIC-CXR) in our paper.
+
+For `IU X-Ray`, you can download the dataset from [here](https://drive.google.com/file/d/1c0BXEuDy8Cmm2jfN0YYGkQxFZd2ZIoLg/view?usp=sharing) and then put the files in `data/iu_xray`.
+
+For `MIMIC-CXR`, you can download the dataset from [here](https://drive.google.com/file/d/1DS6NYirOXQf8qYieSVMvqNwuOlgAbM_E/view?usp=sharing) and then put the files in `data/mimic_cxr`.
+
+## Run on IU X-Ray
+
+Run `bash run_iu_xray.sh` to train a model on the IU X-Ray data.
+
+## Run on MIMIC-CXR
+
+Run `bash run_mimic_cxr.sh` to train a model on the MIMIC-CXR data.
