@@ -31,5 +31,5 @@
  The source code is free for research and education use only. Any commercial use should get formal permission first.
  
  ## Acknowledgement
- Thanks [unbiased-teacher-v2](https://github.com/facebookresearch/unbiased-teacher-v2) for serving as building blocks of Align2Gen.
- Thanks [R2Gen](https://github.com/zhjohnchan/R2Gen) for serving as building blocks of Align2Gen.
+- Thanks [unbiased-teacher-v2](https://github.com/facebookresearch/unbiased-teacher-v2) for serving as building blocks of Align2Gen.
+- Thanks [R2Gen](https://github.com/zhjohnchan/R2Gen) for serving as building blocks of Align2Gen.
