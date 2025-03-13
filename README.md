@@ -1,42 +1,34 @@
 # Align2Gen
-
-
 ## Overview
 
-Automatic polyp segmentation in colonoscopy images is critical for the early diagnosis and treatment of colorectal cancer. However, achieving accurate and robust segmentation is a challenging task due to the significant variations in polyp size, shape, and quantity, particularly in the presence of large, small, or numerous polyps. While recent segmentation methods have achieved notable success, most fail to produce stable results because they do not effectively capture feature interactions across different levels within the image, nor do they integrate both positional and detailed polyp information.
+Radiology report generation is valuable in assisting diagnosis, reducing doctors’ workload, and improving accuracy by automatically generating diagnostic reports by integrating radiological image content with clinical knowledge. However, most existing models primarily establish coarse-grained mappings between global images and texts, ignoring the fine-grained relationship between lesion regions and report content, which affects report accuracy. 
 
-To address these issues, we propose MLDNet (Multi-Level Lesion-aware and Detail-injection Network), a novel approach that introduces a set of specialized modules to enhance feature fusion and segmentation performance.
+To this end, this paper proposes Align2Gen, a radiology report generation model designed for lesion perception.  
 
-- Multi-level Position and Detail Fusion (MPDF): Ensures that each feature layer incorporates detailed positional information from all levels, enabling the network to better handle polyp variations.
-- Selective Step Feature Aggregation (SSFA): Aggregates features from adjacent layers selectively to refine the feature representation at each level.
-- Multi-level Detail Injection (MDI): Performs feature fusion and injects detailed information into the aggregated features, improving the model’s ability to segment complex polyp shapes.
+- we introduce semi-supervised learning to generate bounding box annotations for the MIMIC-CXR dataset through the Unbiased-Teacher v2 framework, which reduces the reliance on manual annotations and improves the efficiency and coverage of annotations.
+- we propose the Align2Gen model to improve the accuracy and interpretability of the report generation by combining the lesion area enhancement module (LERA) and bounding box annotation to focus more on clinically important lesion areas.
+-we design a global-local bi-branch implicit alignment module (LAB and GAB) to enhance feature alignment between vision and text and reduce information mismatch. 
 
 ## Usage
 ### Setup
+#### Align2Gen Setup
 ```
 python 3.8
-pytorch 1.11.0
+pytorch 1.10.0
 cuda 11.3
 ```
-
 ### Downloading necessary data
-- downloading training dataset and move it into ```./data/TrainDataset/```. It contains two sub-datasets: Kvasir-SEG (900 train samples)[Link](https://datasets.simula.no/kvasir-seg/) and CVC-ClinicDB (550 train samples)[Link](https://polyp.grand-challenge.org/CVCClinicDB/).
-- downloading testing dataset and move it into ```./data/TestDataset/```. It contains five sub-datsets: CVC-300 (60 test samples), CVC-ClinicDB (62 test samples), CVC-ColonDB (380 test samples)[Link](http://vi.cvc.uab.es/colon-qa/cvccolondb/), ETIS-LaribPolypDB (196 test samples)[Link](https://polyp.grand-challenge.org/ETISLarib/), Kvasir (100 test samples).
-- downloading PVTv2 weights and and move it into ```./lib/```, which can be found in this download [link](https://github.com/whai362/PVT?tab=readme-ov-file) .
+You can access the official download page for the MIMIC-CXR dataset from the following link: https://physionet.org/content/mimic-cxr/2.0.0/
 
-### Train or Test
+### Train and Test
 ```
-cd MLDNet
-python train.py
-or
-python test.py
+cd Align2Gen
+python main.py
 ```
-
-## Pre-computed maps
-They can be found in [Google Drive](https://drive.google.com/drive/folders/1dhHpXMBQRjxARhHEHLRaLpLwIlJT9YE6?usp=drive_link).
 
 ##  License
 The source code is free for research and education use only. Any commercial use should get formal permission first.
 
 ## Acknowledgement
-Thanks [Polyp-PVT](https://github.com/DengPingFan/Polyp-PVT) for serving as building blocks of MLDNet.
+Thanks [unbiased-teacher-v2](https://github.com/facebookresearch/unbiased-teacher-v2) for serving as building blocks of Align2Gen.
+Thanks [R2Gen](https://github.com/zhjohnchan/R2Gen) for serving as building blocks of Align2Gen.
