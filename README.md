@@ -10,6 +10,24 @@
  - we design a global-local bi-branch implicit alignment module (LAB and GAB) to enhance feature alignment between vision and text and reduce information mismatch. 
  
  ## Usage
+ ### Preparation
+```bash
+├── Unbiased-Teacher v2
+│   ├── datasets
+│   │   ├── train
+│   │   ├── test	
+│   │   ├── unlabel
+│   │   ├── coco_annotations_train.json
+│   │   ├── coco_annotations_test.json
+│   │   ├── coco_annotations_unlabel.json
+│   ├── run_csv2coco.py
+│   ├── run_unlabel2coco.py
+├── D2R-Net
+│   ├── data
+│   │   ├──mimic-cxr
+│   │   ├──annotation.json
+├── scripts
+```
  ### Setup
  #### D2R-Net Setup
  ```
