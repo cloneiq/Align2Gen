@@ -23,7 +23,7 @@
 - If you want to obtain the VinDr-CXR dataset in JPG format, you can download it from the Kaggle competition platform.
  ### Train and Test
  ```
- cd Align2Gen
+ cd D2RNet
  python main.py
  ```
  
